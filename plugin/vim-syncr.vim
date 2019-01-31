@@ -55,7 +55,7 @@ function! VS_UploadFiles()
   let conf = VS_GetConf()
 
   if has_key(conf, 'remote_host')
-        let cmd = "rsync -avzhe ssh " . conf['project_path'] . " " . conf['remote_user'] . "@" . conf['remote_host'] . ":" . conf['remote_path'] . " --exclude '.*'"
+        let cmd = "rsync -avzhe ssh " . conf['project_path'] . " " . conf['remote_user'] . "@" . conf['remote_host'] . ":" . conf['remote_path'] . " --exclude '.*' --exclude-from '.exclude-list'"
         execute '!' . cmd
   else
     echo 'Could not locate a .syncr configuration file. Aborting...'
@@ -67,7 +67,7 @@ function! VS_DeleteFiles()
   let conf = VS_GetConf()
 
   if has_key(conf, 'remote_host')
-        let cmd = "rsync -avzhe ssh " . conf['project_path'] . " " . conf['remote_user'] . "@" . conf['remote_host'] . ":" . conf['remote_path'] . " --exclude '.*'" . " --delete"
+        let cmd = "rsync -avzhe ssh " . conf['project_path'] . " " . conf['remote_user'] . "@" . conf['remote_host'] . ":" . conf['remote_path'] . " --exclude '.*' --exclude-from '.exclude-list' " . " --delete"
         execute '!' . cmd
   else
     echo 'Could not locate a .syncr configuration file. Aborting...'
@@ -79,7 +79,7 @@ function! VS_DownloadFiles()
   let conf = VS_GetConf()
 
   if has_key(conf, 'remote_host')
-        let cmd = "rsync -avzhe ssh " . conf['remote_user'] . "@" . conf['remote_host'] . ":" . conf['remote_path']  . " " . conf['project_path'] . " --exclude '.*'" 
+        let cmd = "rsync -avzhe ssh " . conf['remote_user'] . "@" . conf['remote_host'] . ":" . conf['remote_path']  . " " . conf['project_path'] . " --exclude '.*' --exclude-from '.exclude-list'" 
         execute '!' . cmd
   else
     echo 'Could not locate a .syncr configuration file. Aborting...'
