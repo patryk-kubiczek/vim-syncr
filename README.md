@@ -1,5 +1,9 @@
-vim-syncr
+vim-syncr (modified by P. Kubiczek)
 =========
+
+My modification regards fixing the local and remote paths such that upload/download process is easier. Following description comes from https://github.com/s10g/vim-syncr and by no means do I claim any level of authorship. 
+
+***
 
 vim-syncr is a simple vim script for uploading/downloading files to a remote location or deleting files from a remote location using rsync over ssh.
 
